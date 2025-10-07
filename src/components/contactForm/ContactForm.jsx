@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 
 import { selectContacts, addContact } from "../../redux/contactsSlice.js";
+import styles from "./ContactForm.module.css";
 
 const ContactForm = () => {
   const nameId = useId();
@@ -63,30 +64,38 @@ const ContactForm = () => {
           validationSchema={FeedbackSchema}
           onSubmit={handleSubmit}
       >
-        <Form>
-          <label htmlFor={nameId}>Name: </label>
-          <Field
-              type="text"
-              name="name"
-              id={nameId}
-          />
-          <ErrorMessage
-              name={"name"}
-              component={"span"}
-          />
+        <Form className={styles.form}>
+          <div className={styles.name}>
+            <label htmlFor={nameId}>Name: </label>
+            <Field
+                type="text"
+                name="name"
+                id={nameId}
+            />
+            <ErrorMessage
+                className={styles.error}
+                name={"name"}
+                component={"span"}
+            />
+          </div>
           
-          <label htmlFor={numberId}>Number: </label>
-          <Field
-              type={"phone"}
-              name={"number"}
-              id={numberId}
-          />
-          <ErrorMessage
-              name={"number"}
-              component={"span"}
-          />
+          <div className={styles.name}>
+            <label htmlFor={numberId}>Number: </label>
+            <Field
+                type={"phone"}
+                name={"number"}
+                id={numberId}
+            />
+            <ErrorMessage
+                className={styles.error}
+                name={"number"}
+                component={"span"}
+            />
+          </div>
           
-          <button type={"submit"}>Add Contact</button>
+          <div className={styles.name}>
+            <button type={"submit"}>Add Contact</button>
+          </div>
         </Form>
       
       </Formik>
