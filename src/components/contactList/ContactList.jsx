@@ -12,15 +12,15 @@ const ContactList = () => {
   const filter = useSelector(selectNameFilter);
   
   
-  let filteredContacts;
+  let filteredContacts = [];
   
-  if (filter) {
-    filteredContacts = contacts.filter((person) => person.name.toLowerCase()
-                                                         .startsWith(filter));
-  } else {
-    filteredContacts = contacts.sort((a,
-                                      b) => a.name.localeCompare(b.name));
-  }
+  // if (filter) {
+  //   filteredContacts = contacts.filter((person) => person.name.toLowerCase()
+  //                                                        .startsWith(filter));
+  // } else {
+  //   filteredContacts = contacts.sort((a,
+  //                                     b) => a.name.localeCompare(b.name));
+  // }
   
   return (
       <ul className={styles.list}>
