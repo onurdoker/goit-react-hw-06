@@ -1,10 +1,16 @@
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
     display: flex;
     min-width: 320px;
     margin: 0;
-    padding: 20px;
-    background-color: #F0F0F0;
     place-items: center;
 }
 

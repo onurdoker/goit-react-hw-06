@@ -7,9 +7,9 @@ import "./App.css";
 function App() {
   
   return (
-      <div className={"container"}>
-        <h1 className={"title"}>Phonebook</h1>
-        <div className={"components"}>
+      <div>
+        <h1>Phonebook</h1>
+        <div>
           <ContactForm />
           <SearchBox />
           <ContactList />
