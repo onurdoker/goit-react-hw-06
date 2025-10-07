@@ -19,14 +19,19 @@ const ContactList = () => {
   
   
   return (
-      <ul className={styles.list}>
-        {filteredContacts.length === 0
-            ? (<p>There are no available contacts!</p>)
-            : (filteredContacts.map((person) => <Contacts
-                key={person.id}
-                contact={person}
-            />))}
-      </ul>
+      <div className={styles.body}>
+        <ul>
+          {filteredContacts.length === 0
+              ? (<p>There are no available contacts!</p>)
+              : (filteredContacts.map((person) => (<div className={styles.card}>
+                                        <Contacts
+                                            key={person.id}
+                                            contact={person}
+                                        />
+                                      </div>),
+              ))}
+        </ul>
+      </div>
   );
   
 };

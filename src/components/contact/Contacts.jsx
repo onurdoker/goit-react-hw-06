@@ -9,22 +9,18 @@ const Contacts = ({ contact }) => {
   const dispatch = useDispatch();
   
   return (
-      <li className={styles.contactItem}>
-        <IoPersonSharp className={styles.icon} />
-        <div className={styles.contactInfo}>
-          <p className={styles.contactName}>{contact.name}</p>
-          <div className={styles.contactDetail}>
-            <FaPhone className={styles.phoneIcon} />
-            <p className={styles.contactName}>{contact.number}</p>
-          </div>
-        </div>
+      <>
+        <li>
+          <IoPersonSharp /> {contact.name} <br />
+          <FaPhone /> {contact.number}
+        </li>
         <button
             className={styles.btn}
             onClick={() => dispatch(deleteContact(contact.id))}
         >
           Delete
         </button>
-      </li>
+      </>
   );
 };
 
