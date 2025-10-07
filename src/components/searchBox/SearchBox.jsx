@@ -1,24 +1,16 @@
-import { useId, useState } from "react";
+import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilter, selectNameFilter } from "../../redux/filtersSlice.js";
 import styles from "./SearchBox.module.css";
 
 const SearchBox = () => {
-  
+
   const nameId = useId();
-  const [error, setError] = useState("");
-  
   const dispatch = useDispatch();
   const filter = useSelector(selectNameFilter);
-  
-  const handleSearchSubmit = (event) => {
+
+  const handleSearchChange = (event) => {
     const value = event.target.value;
-    if (value === "" || /^[A-Za-zĞÜŞİÖÇğüşıöç\s]+$/.test(value)) {
-      return (event.currentTarget.value);
-    } else {
-      setError("Search can only contain letters and spaces");
-    }
-    
     dispatch(changeFilter(value));
   };
   
@@ -28,10 +20,9 @@ const SearchBox = () => {
         <input
             type={"text"}
             value={filter}
-            onChange={handleSearchSubmit}
+            onChange={handleSearchChange}
             id={nameId}
         />
-        {error && <span style={{ color: "red" }}>{error}</span>}
       </div>
   );
 };

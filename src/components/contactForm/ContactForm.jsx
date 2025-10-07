@@ -1,6 +1,5 @@
 import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { nanoid } from "nanoid";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 
@@ -29,29 +28,53 @@ const ContactForm = () => {
                                                          " (for example: 1234567)")
                                                 .required("Phone number is required"),
                                    });
-  
+
+  function capitalize(name) {
+    if (name.includes(" ")) {
+      let count = 0;
+      for (let char of name) {
+        if (char === " ") {
+          count += 1;
+        }
+      }
+
+      let namee = [];
+      let newName = "";
+
+      for (let i = 0; i <= count; i++) {
+        namee[i] = name.split(" ")[i];
+        namee[i] = namee[i].charAt(0)
+                           .toUpperCase() + namee[i].slice(1);
+
+        newName = `${newName} ${namee[i]}`.trim();
+      }
+
+      return newName;
+    } else {
+      return name.charAt(0)
+                 .toUpperCase() + name.slice(1);
+    }
+  }
+
+  function reOrganizeNumber(phoneNumber) {
+    return phoneNumber.slice(0,
+                             3) + "-" + phoneNumber.slice(3,
+                                                          5) + "-" + phoneNumber.slice(5);
+  }
+
   const handleSubmit = (values,
                         { resetForm }) => {
-    const capitalizedName = values.name.charAt(0)
-                                  .toUpperCase() + values.name.slice(1)
-                                                         .toLowerCase();
-    
+    const capitalizedName = capitalize(values.name);
+
     const exists = contacts.some((c) => c.name.toLowerCase() === capitalizedName.toLowerCase());
     if (exists) {
       alert("Contact with this name already exists!");
       return;
     }
-    
-    const formattedNumber = values.number.replace(/(\d{3})(\d{2})(\d{2})/,
-                                                  "$1-$2-$3");
-    
-    dispatch(
-        addContact({
-                     id: nanoid(),
-                     name: capitalizedName,
-                     number: formattedNumber,
-                   }),
-    );
+
+    const formattedNumber = reOrganizeNumber(values.number);
+
+    dispatch(addContact(capitalizedName, formattedNumber));
     resetForm();
   };
   
